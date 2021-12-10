@@ -19,7 +19,7 @@ from src.agents.solver import Network, Greedy
 ####################################################
 
 def test_network(network, env_args, graphs_test,device=None, step_factor=1, batched=True,
-                 n_attempts=50, return_raw=False, return_history=False, max_batch_size=None):
+                 n_attempts=15, return_raw=False, return_history=False, max_batch_size=None):
     if batched:
         return __test_network_batched(network, env_args, graphs_test, device, step_factor,
                                       n_attempts, return_raw, return_history, max_batch_size)
@@ -30,7 +30,7 @@ def test_network(network, env_args, graphs_test,device=None, step_factor=1, batc
                                          n_attempts, return_raw, return_history)
 
 def __test_network_batched(network, env_args, graphs_test, device=None, step_factor=1,
-                           n_attempts=50, return_raw=False, return_history=False, max_batch_size=None):
+                           n_attempts=15, return_raw=False, return_history=False, max_batch_size=None):
 
     if device is None:
         device = "cuda" if torch.cuda.is_available() else "cpu"

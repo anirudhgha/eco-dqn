@@ -17,10 +17,11 @@ try:
 except ImportError:
     pass
 
-def run(save_loc="ER_200spin/eco",
-        graph_save_loc="_graphs/validation/ER_200spin_p15_100graphs.pkl",
+def run(save_loc= "ER_200spin/eco",
+        graph_save_loc= r"C:\Users\Anirudh Ghantasala\Box\Research\Data\MA598\graphs\custom_100subgraphs_15node_250master.pkl",
         batched=True,
-        max_batch_size=None):
+        max_batch_size=None,
+        n_attemps=15):
 
     print("\n----- Running {} -----\n".format(os.path.basename(__file__)))
 

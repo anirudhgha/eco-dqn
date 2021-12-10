@@ -18,9 +18,9 @@ except ImportError:
     pass
 
 # graph_save_loc=r"C:\Users\alasg\Documents\GitHub\eco-dqn\_graphs\validation\ER_200spin_p15_100graphs.pkl",
-def run(save_loc=r"C:\Users\alasg\Documents\GitHub\eco-dqn\results",
-        network_save_loc=r"C:\Users\alasg\Documents\GitHub\eco-dqn\experiments\pretrained_agent\networks\eco\network_best_ER_200spin.pth",
-        graph_save_loc=r"C:\Users\alasg\Documents\GitHub\eco-dqn\custom_100graphs_50node.pkl",
+def run(save_loc= r"C:\Users\alasg\Documents\GitHub\eco-dqn\results",
+        network_save_loc= r"C:\Users\alasg\Documents\GitHub\eco-dqn\experiments\pretrained_agent\networks\eco\network_best_ER_200spin.pth",
+        graph_save_loc= r"C:\Users\Anirudh Ghantasala\Box\Research\Data\MA598\graphs\custom_100subgraphs_15node_250master.pkl",
         batched=True,
         max_batch_size=None,
         step_factor=None,
@@ -83,7 +83,7 @@ def run(save_loc=r"C:\Users\alasg\Documents\GitHub\eco-dqn\results",
                               graphs_test[0].shape[0] * step_factor,
                               **env_args)
 
-    device = "cpu"#"cuda" if torch.cuda.is_available() else "cpu"
+    device = "cuda" if torch.cuda.is_available() else "cpu"
     torch.device(device)
     print("Set torch default device to {}.".format(device))
 
