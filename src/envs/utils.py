@@ -78,6 +78,7 @@ class GraphGenerator(ABC):
 ###################
 # Unbiased graphs #
 ###################
+
 class RandomGraphGenerator(GraphGenerator):
 
     def __init__(self, n_spins=20, edge_type=EdgeType.DISCRETE, biased=False):
@@ -121,6 +122,53 @@ class RandomGraphGenerator(GraphGenerator):
             return m, b
         else:
             return m
+
+class RandomSubgraphGenerator(GraphGenerator):
+    
+    def __init__(self, n_spins=20, edge_type=EdgeType.DISCRETE, biased=False, master_graph=None):
+        super().__init__(n_spins, edge_type, biased)
+
+        if self.edge_type == EdgeType.UNIFORM:
+            self.get_w = lambda : 1
+        elif self.edge_type == EdgeType.DISCRETE:
+            self.get_w = lambda : np.random.choice([+1, -1])
+        elif self.edge_type == EdgeType.RANDOM:
+            self.get_w = lambda : np.random.uniform(-1, 1)
+        else:
+            raise NotImplementedError()
+
+        self.master_graph = np.array(master_graph)
+        self.size_master_graph = master_graph.shape[0]
+        self.masterseq = [_ for _ in range(self.size_master_graph)]
+        
+    def get(self, with_padding=False):
+
+        # size of the subgraph we sample from master_graph
+        g_size = self.n_spins 
+        subgraph = np.zeros((g_size, g_size))
+
+        # select random submatrix from master_graph's adjacency matrix to match size of desired subgraph
+        subgraph_rows = random.sample(self.masterseq, g_size)
+        subgraph = self.master_graph[subgraph_rows,:]
+        subgraph = subgraph[:,subgraph_rows]
+
+        matrix = np.array(subgraph)
+        # for i in range(self.n_spins):
+        #     for j in range(i):
+        #         if np.random.uniform() < density:
+        #             w = self.get_w()
+        #             matrix[i, j] = w
+        #             matrix[j, i] = w
+
+        matrix = self.pad_matrix(matrix) if with_padding else matrix
+
+        if self.biased:
+            bias = np.array([self.get_w() if np.random.uniform() < density else 0 for _ in range(self.n_spins)])
+            bias = self.pad_bias(bias) if with_padding else bias
+            return matrix, bias
+        else:
+            return matrix
+
 
 class RandomErdosRenyiGraphGenerator(GraphGenerator):
 

@@ -56,6 +56,10 @@ def run(save_loc="BA_200spin/eco"):
     train_graph_generator = RandomBarabasiAlbertGraphGenerator(n_spins=n_spins_train,m_insertion_edges=4,edge_type=EdgeType.DISCRETE)
 
     ####
+    # Pre-generated training graphs [Anirudh]
+    ####
+    # train_graph_generator = 
+    ####
     # Pre-generated test graphs
     ####
     graph_save_loc = "_graphs/testing/BA_200spin_m4_50graphs.pkl"

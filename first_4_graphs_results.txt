@@ -1,0 +1,22 @@
+Running greedy solver with +1 initialisation of spins......done.
+Preparing batch of 50 environments for graph 0....done.
+Finished agent testing batch 1.
+Running greedy solver with 50 random initialisations of spins for batch 1......done.
+Graph 0, best(mean) cut: 5533.0(5515.82), greedy cut (rand init / +1 init) : 5521.0 / 5457.0.  (50 attempts in 290.04s)
+Running greedy solver with +1 initialisation of spins......done.
+Preparing batch of 50 environments for graph 1....done.
+Finished agent testing batch 1.
+Running greedy solver with 50 random initialisations of spins for batch 1......done.
+Graph 1, best(mean) cut: 5482.0(5468.02), greedy cut (rand init / +1 init) : 5475.0 / 5471.0.  (50 attempts in 283.03s)
+Running greedy solver with +1 initialisation of spins......done.
+Preparing batch of 50 environments for graph 2....done.
+Finished agent testing batch 1.
+Running greedy solver with 50 random initialisations of spins for batch 1......done.
+Graph 2, best(mean) cut: 5511.0(5490.84), greedy cut (rand init / +1 init) : 5498.0 / 5485.0.  (50 attempts in 295.47s)
+Running greedy solver with +1 initialisation of spins......done.
+Preparing batch of 50 environments for graph 3....done.
+Finished agent testing batch 1.
+Running greedy solver with 50 random initialisations of spins for batch 1......done.
+Graph 3, best(mean) cut: 5518.0(5498.1), greedy cut (rand init / +1 init) : 5500.0 / 5448.0.  (50 attempts in 294.71s)
+Running greedy solver with +1 initialisation of spins......done.
+Preparing batch of 50 environments for graph 4....done.

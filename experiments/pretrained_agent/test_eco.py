@@ -18,8 +18,8 @@ except ImportError:
     pass
 
 def run(save_loc="pretrained_agent/eco",
-        network_save_loc="experiments_new/pretrained_agent/networks/eco/network_best_ER_200spin.pth",
-        graph_save_loc="_graphs/validation/ER_200spin_p15_100graphs.pkl",
+        network_save_loc=r"C:\Users\alasg\Documents\GitHub\eco-dqn\experiments\pretrained_agent\networks\eco\network_best_ER_200spin.pth",
+        graph_save_loc=r"C:\Users\alasg\Documents\GitHub\eco-dqn\_graphs\validation\ER_200spin_p15_100graphs.pkl",
         batched=True,
         max_batch_size=None,
         step_factor=None,

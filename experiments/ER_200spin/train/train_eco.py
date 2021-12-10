@@ -3,6 +3,7 @@ import pickle
 
 import matplotlib.pyplot as plt
 import numpy as np
+import networkx as nx
 
 import src.envs.core as ising_env
 from experiments.utils import load_graph_set, mk_dir
@@ -10,6 +11,7 @@ from src.agents.dqn.dqn import DQN
 from src.agents.dqn.utils import TestMetric
 from src.envs.utils import (SetGraphGenerator,
                             RandomErdosRenyiGraphGenerator,
+                            RandomSubgraphGenerator,
                             EdgeType, RewardSignal, ExtraAction,
                             OptimisationTarget, SpinBasis,
                             DEFAULT_OBSERVABLES)
@@ -51,13 +53,18 @@ def run(save_loc="ER_200spin/eco"):
     ####################################################
 
     n_spins_train = 200
+    
+    # load master graph [Anirudh]
+    loaded_graphs = pickle.load(open(r"C:\Users\alasg\Documents\GitHub\eco-dqn\custom_1graphs_250node.pkl",'rb'))
+    for i,g in enumerate(loaded_graphs):
+      master_graph = nx.to_numpy_array(g)
 
-    train_graph_generator = RandomErdosRenyiGraphGenerator(n_spins=n_spins_train,p_connection=0.15,edge_type=EdgeType.DISCRETE)
+    train_graph_generator = RandomSubgraphGenerator(n_spins=n_spins_train,edge_type=EdgeType.DISCRETE, biased=False,master_graph=master_graph)
 
     ####
     # Pre-generated test graphs
     ####
-    graph_save_loc = "_graphs/testing/ER_200spin_p15_50graphs.pkl"
+    graph_save_loc = r"C:\Users\alasg\Documents\GitHub\eco-dqn\custom_100subgraphs_200node_250master.pkl"
     graphs_test = load_graph_set(graph_save_loc)
     n_tests = len(graphs_test)
 
@@ -128,7 +135,7 @@ def run(save_loc="ER_200spin/eco"):
                 final_learning_rate_step=200000,
 
                 update_frequency=32,  # 1
-                minibatch_size=64,  # 128
+                minibatch_size=8,  # 128
                 max_grad_norm=None,
                 weight_decay=0,
 
